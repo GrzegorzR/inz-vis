@@ -29,15 +29,15 @@ function createArrowImage (nodeRadius) {
 function getArrow(link){
   console.log(link.target);
   if(link.target.id === "CreditWorthiness")
-    return "url(#end35)";
+    return "url(#end"+ bigNodeR.toString() +")";
   else
-    return "url(#end25)";
+    return "url(#end"+ smallNodeR.toString() +")";
 }
 
 
 function addArrowsToLinks (links) {
-  createArrowImage(25);
-  createArrowImage(35);
+  createArrowImage(bigNodeR);
+  createArrowImage(smallNodeR);
 
   links.attr("marker-end",function(d){return getArrow(d)});
 }

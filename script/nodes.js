@@ -81,11 +81,14 @@ function click() {
 
   addSlider("1");
   addSlider("2");
+  addSlider("3");
 
   console.log(this.textContent);
 }
 
 function addSlider(id){
+
+  $('<p>state ' + id+':</p>').appendTo('#sliders');
   var iDiv = document.createElement('slider' + id);
   var sliderName = 'slider' + id;
   iDiv.id = sliderName;
@@ -93,13 +96,12 @@ function addSlider(id){
 
   
   document.getElementById("node_info").appendChild(iDiv);
-      document.getElementById('slider' + id).innerHTML = "Asdasd";
 
 
-var slider = d3.select(".sliders").append("p").append("input")
+  var slider = d3.select(".sliders").append("p").append("input")
   .datum({})
   .attr("type", "range");
-  $('<p>'+sliderName+'</p>').appendTo('#sliders');
+  
   //.on("input", slided);
 
 

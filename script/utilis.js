@@ -1,32 +1,34 @@
 
 $(document).ready(function(){
-     $(".node_info").hide();
+
 
    
  
 });
 
+var bigNodeR = 25;
+var smallNodeR = 20;
 
-var width = 960,
-    height = 800;
+var width = 900,
+    height = 600;
 
 
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
+var svg = d3.select(".visual").append("svg")
+    .style("width", width)
     .attr("height", height);
 
   var arc = d3.svg.arc()
-        .outerRadius(25)
-        .innerRadius(5);
+        .outerRadius(smallNodeR)
+        .innerRadius(0);
  var arc2 = d3.svg.arc()
-        .outerRadius(35)
-        .innerRadius(5);
+        .outerRadius(bigNodeR)
+        .innerRadius(0);
 
 
 
 var force = d3.layout.force()
     .gravity(0.05)
-    .distance(150)
+    .distance(100)
     .charge(-1000)
     .size([width, height]);
 
