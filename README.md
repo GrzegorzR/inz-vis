@@ -1,3 +1,3 @@
 # inz-vis
 
-grck.pl/d3/index.html
+www.grck.pl/d3/index.html
