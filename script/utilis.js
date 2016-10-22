@@ -6,6 +6,29 @@ $(document).ready(function(){
  
 });
 
+var main = null;
+
+function click() {
+  var selection = d3.select(this);
+  var nodeName = this.textContent;
+  main.selectNode(nodeName);
+  /*
+  document.getElementById('sliders').innerHTML = "";
+  getNodeById("aa");
+
+
+  document.getElementById("node_name").innerHTML = nodeName;
+
+
+  $(".node_info").show();
+
+  addSlider("1");
+  addSlider("2");
+  addSlider("3");
+
+  console.log(this.textContent);*/
+} 
+
 var bigNodeR = 25;
 var smallNodeR = 20;
 
@@ -38,7 +61,7 @@ var pie = d3.layout.pie()
 
 
 function addForceLayout (json) {
-	  force
+	   force
       .nodes(json.nodes)
       .links(json.links)
       .start();

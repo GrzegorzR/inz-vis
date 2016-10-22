@@ -1,15 +1,6 @@
 
 
-function addLinks (json) {
-     var link = svg.selectAll(".link")
-      .data(json.links)
-      .enter().append("line")
-      .attr("class", "link")
-      .style("stroke-width", function(d) { return 3; })
 
-    return link;
-
-}
 
 function createArrowImage (nodeRadius) {
     svg.append("svg:defs").selectAll("link")
@@ -35,9 +26,27 @@ function getArrow(link){
 }
 
 
-function addArrowsToLinks (links) {
-  createArrowImage(bigNodeR);
-  createArrowImage(smallNodeR);
+function LinksManeger (){
+    this.links = null;
 
-  links.attr("marker-end",function(d){return getArrow(d)});
-}
+    this.addLinks = function  (json) {
+        this.links = svg.selectAll(".link")
+        .data(json.links)
+        .enter().append("line")
+        .attr("class", "link")
+        .style("stroke-width", function(d) { return 3; })
+
+    }
+
+    this.getLinks = function() {
+        return this.links;
+    }
+
+    this.addArrowsToLinks = function() {
+        createArrowImage(bigNodeR);
+        createArrowImage(smallNodeR);
+        this.links.attr("marker-end",function(d){return getArrow(d)});
+    }
+
+
+} 

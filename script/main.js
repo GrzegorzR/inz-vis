@@ -5,39 +5,60 @@
 
 
 
-d3.json("miserables.json", function(error, json) {
-  if (error) throw error;
+function MainClass (nodesManeger, linksManeger, layoutManeger, menuMeneger) {
+    this.nodesManeger = nodesManeger;
+    this.linksManeger = linksManeger;
+    this.layoutManeger = layoutManeger;
+    this.menuMeneger = menuMeneger;
 
-    addForceLayout(json);
-
-
-    var links = addLinks(json);
-    addArrowsToLinks(links);
-
-    var nodes = addNodes(json);
-    addPieChartsToNodes(nodes);
-    addTextToNodes(nodes);
+    this.createVisualisation = function(jsonLocation) {
+      d3.json(jsonLocation, function(error, json) {
+        if (error) throw error;
 
 
-    
+        this.layoutManeger.addForceLayout(json)
+        var force = layoutManeger.getForce();
+
+        this.linksManeger.addLinks(json);
+        this.linksManeger.addArrowsToLinks();
+
+
+        this.nodesManeger.addNodes(json, force);
+        this.nodesManeger.addPieChartsToNodes();
+        this.nodesManeger.addTextToNodes();
+
+
+        var links = linksManeger.getLinks();
+        var nodes = nodesManeger.getNodes();
+
+        this.layoutManeger.prepereTickBehaviour(links, nodes);
+      });
+
+    }
+
+    this.selectNode = function(nodeId){
+
+      var node = this.nodesManeger.getNodeById(nodeId);
+      
+      this.nodesManeger.deleteCharts();
+      this.nodesManeger.addPieChartsToNodes();
+      var menuObj = this.menuMeneger.prepareNodeMenu(node);
+
+      //subscribe sliders and buttons here
+
+    }
+
+};
 
 
 
+var nodesManeger = new NodesManeger();
+var linksManeger = new LinksManeger();
+var layoutManeger = new LayoutManeger();
+var menuManeger = new MenuManeger();
+
+var main = new MainClass(nodesManeger, linksManeger, 
+                         layoutManeger, menuManeger);
 
 
-
-
-  
-
-
-
-  force.on("tick", function() {
-    links.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-
-    nodes.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-  });
-
-});
+main.createVisualisation("data.json");
