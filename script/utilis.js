@@ -12,6 +12,7 @@ function click() {
   var selection = d3.select(this);
   var nodeName = this.textContent;
   main.selectNode(nodeName);
+   // main.deleteChart(nodeName);
   /*
   document.getElementById('sliders').innerHTML = "";
   getNodeById("aa");

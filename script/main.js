@@ -40,7 +40,7 @@ function MainClass (nodesManeger, linksManeger, layoutManeger, menuMeneger) {
 
       var node = this.nodesManeger.getNodeById(nodeId);
       
-      this.nodesManeger.deleteCharts();
+      this.nodesManeger.deleteChart(nodeId);
       this.nodesManeger.addPieChartsToNodes();
       var menuObj = this.menuMeneger.prepareNodeMenu(node);
 

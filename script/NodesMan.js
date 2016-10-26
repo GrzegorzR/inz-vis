@@ -54,10 +54,11 @@ function NodesManeger () {
       nodes2 =  this.nodes.filter(function(d) { return d.id === "CreditWorthiness"; });
       nodes1.selectAll("path")
         .data(function(d, i) {return preparePieData(d,i)})
+
         .enter()
         .append("svg:path")
-        .attr("class","piechart")
-        .attr("fill", function(d, i) { return getRandomColor(); })
+          .attr("class", "piechart" )
+        .attr("fill", function(d, i) { console.log(i); return getRandomColor(); })
         .attr("radius", function(d, i) { return 15;})
         .attr("d", arc)
         .attr("r", 15);
@@ -72,8 +73,24 @@ function NodesManeger () {
         .attr("d", arc2)
         .attr("r", 15);
   }
-  this.deleteCharts = function (){
-    d3.selectAll(".piechart").remove();
+  this.deleteChart = function (id){
+      console.log(d3.selectAll(function(d){return d.nextElementSibling.__data.id ===id}));
+      var charts = d3.selectAll(".piechart");
+      console.log(charts[0]);
+      for(i in charts[0]){
+
+          //console.log(d3.select(charts[0][i].parentElement).data()[0].id)
+          if(d3.select(charts[0][i].parentElement).data()[0].id === id){
+              charts[0][i].remove();
+          }
+         // charts[0][i].remove();
+         // if(chart.nextElementSibling.__data__.data.id === id){
+          //    chart.remove();
+         // }
+      }
+      //console.log(d3.charts.filter(function(d){return d.nextElementSibling.__data.id ===id}))
+      //d3.selectAll(".piechart").remove();
+    //d3.selectAll("." +id).remove();
   }
 
 
