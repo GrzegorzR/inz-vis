@@ -28,7 +28,11 @@ function click() {
   addSlider("3");
 
   console.log(this.textContent);*/
-} 
+}
+
+function updateValues() {
+    main.updateValues();
+}
 
 var bigNodeR = 25;
 var smallNodeR = 20;

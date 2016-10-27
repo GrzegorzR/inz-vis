@@ -8,7 +8,20 @@ function preparePieData (node,i){
                   {"group": 3, "value": getRandomInt(1,4)}]); 
 }
 
+function arcTween(a) {
+    var i = d3.interpolate(this._current, a);
+    this._current = i(0);
+    return function(t) {
+        return arc(i(t));
+    };
+}
 
+function reloadChart (id){
+    var nodes1 =  d3.selectAll(".node").filter(function(d) { return d.id === id; });
+    var path = nodes1.selectAll("path");
+    path.data(preparePieData(1,1));
+    path.transition().duration(200).attrTween("d", arcTween);
+};
 
 function NodesManeger () {
     this.nodes = null;
@@ -19,9 +32,7 @@ function NodesManeger () {
     }
 
     this.getNodeById = function(nodeId){
-      console.log(this.nodes);
       var result = this.nodes.filter(function(d, i) { return d.id === nodeId; });
-      console.log(result.data());
       return result.data()[0];
     }
 
@@ -61,7 +72,9 @@ function NodesManeger () {
         .attr("fill", function(d, i) { console.log(i); return getRandomColor(); })
         .attr("radius", function(d, i) { return 15;})
         .attr("d", arc)
-        .attr("r", 15);
+        .attr("r", 15)
+        .each(function(d) { this._current = d; });
+
 
       nodes2.selectAll("path")
         .data(function(d, i) {return preparePieData(d,i)})
@@ -69,28 +82,31 @@ function NodesManeger () {
         .append("svg:path")
         
         .attr("fill", function(d, i) { return getRandomColor(); })
-        .attr("radius", function(d, i) { return 15;})
+        .attr("radius", function(d, i) { return 25;})
         .attr("d", arc2)
-        .attr("r", 15);
+        .attr("r", 25)
+          .each(function(d) { this._current = d; });
   }
   this.deleteChart = function (id){
-      console.log(d3.selectAll(function(d){return d.nextElementSibling.__data.id ===id}));
-      var charts = d3.selectAll(".piechart");
-      console.log(charts[0]);
-      for(i in charts[0]){
 
-          //console.log(d3.select(charts[0][i].parentElement).data()[0].id)
-          if(d3.select(charts[0][i].parentElement).data()[0].id === id){
-              charts[0][i].remove();
-          }
-         // charts[0][i].remove();
-         // if(chart.nextElementSibling.__data__.data.id === id){
-          //    chart.remove();
-         // }
-      }
-      //console.log(d3.charts.filter(function(d){return d.nextElementSibling.__data.id ===id}))
-      //d3.selectAll(".piechart").remove();
-    //d3.selectAll("." +id).remove();
+      var nodes1 =  d3.selectAll(".node").filter(function(d) { return d.id === id; });
+      var path = nodes1.selectAll("path");
+      path.data(preparePieData(1,1));
+      path.transition().duration(15000).attrTween("d", arcTween);
+
+
+  };
+  this.updateValues = function () {
+      var nodes1 =  this.nodes.filter(function(d) { return d.id === "Age"; });
+      console.log(nodes1);
+    this.nodes.each(function (d) {
+       // var selection = d3.select(this);
+
+        var nodeName = this.textContent;
+        if(nodeName != "CreditWorthiness") {
+            reloadChart(nodeName);
+        }
+    })
   }
 
 
