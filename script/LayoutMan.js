@@ -22,7 +22,6 @@ function LayoutManeger () {
 
 	this.prepereTickBehaviour = function(links, nodes){
 		this.force.on("tick", function() {
-
     		links.attr("x1", function(d) { return d.source.x; })
         		 .attr("y1", function(d) { return d.source.y; })
         	     .attr("x2", function(d) { return d.target.x; })

@@ -29,7 +29,7 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
             this.layoutManeger.prepereTickBehaviour(links, nodes);
         });
 
-    }
+    };
 
     this.selectNode = function (nodeId) {
 
@@ -41,10 +41,14 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
 
         //subscribe sliders and buttons here
 
-    }
-    this.updateValues = function () {
+    };
+
+
+    this.updateValues = function (time) {
         resolveWithoutEvidences(null);
-        this.nodesManeger.updateValues();
+        document.getElementById("net-info").innerHTML = "Network resolved";
+        document.getElementById("net-panel").className = "panel panel-success";
+        this.nodesManeger.updateValues(time);
     }
 
 };
@@ -59,4 +63,4 @@ var main = new MainClass(nodesManeger, linksManeger,
     layoutManeger, menuManeger);
 
 
-main.createVisualisation("data/asia.json");
+main.createVisualisation("data/credit.json");
