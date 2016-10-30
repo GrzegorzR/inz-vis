@@ -43,6 +43,7 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
 
     }
     this.updateValues = function () {
+        resolveWithoutEvidences(null);
         this.nodesManeger.updateValues();
     }
 
@@ -58,4 +59,4 @@ var main = new MainClass(nodesManeger, linksManeger,
     layoutManeger, menuManeger);
 
 
-main.createVisualisation("data.json");
+main.createVisualisation("data/asia.json");

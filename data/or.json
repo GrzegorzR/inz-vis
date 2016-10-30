@@ -1,0 +1,55 @@
+{
+  "directed": true,
+  "graph": {},
+  "nodes": [{
+    "states": ["NoAccident", "Accident"],
+    "probabilities": [],
+    "parents": ["EquipmentFailure", "HumanError"],
+    "id": "Accident",
+    "fixp": []
+  }, {
+    "states": ["Cancer", "NoCancer"],
+    "probabilities": ["0.1", "0.9"],
+    "parents": [],
+    "id": "LiverCancer",
+    "fixp": null
+  }, {
+    "states": ["Failure", "NoFailure"],
+    "probabilities": ["0.02", "0.98"],
+    "parents": [],
+    "id": "EquipmentFailure",
+    "fixp": null
+  }, {
+    "states": ["Error", "NoError"],
+    "probabilities": ["0.1", "0.9"],
+    "parents": [],
+    "id": "HumanError",
+    "fixp": null
+  }, {
+    "states": ["Severe", "Moderate", "None"],
+    "probabilities": [],
+    "parents": ["LiverCancer", "HepatitisB"],
+    "id": "Jaundice",
+    "fixp": []
+  }, {
+    "states": ["Present", "Absent"],
+    "probabilities": ["0.05", "0.95"],
+    "parents": [],
+    "id": "HepatitisB",
+    "fixp": null
+  }],
+  "links": [{
+    "source": 1,
+    "target": 4
+  }, {
+    "source": 2,
+    "target": 0
+  }, {
+    "source": 3,
+    "target": 0
+  }, {
+    "source": 5,
+    "target": 4
+  }],
+  "multigraph": false
+}

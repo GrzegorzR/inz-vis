@@ -1,0 +1,96 @@
+{
+  "directed": true,
+  "graph": {},
+  "nodes": [{
+    "states": ["Absent", "Present"],
+    "probabilities": ["0.7", "0.3", "0.4", "0.6"],
+    "parents": ["Smoking"],
+    "id": "Bronchitis",
+    "fixp": [
+      ["0.7", "0.3"],
+      ["0.4", "0.6"]
+    ]
+  }, {
+    "states": ["Nothing", "CancerORTuberculosis"],
+    "probabilities": [],
+    "parents": ["Tuberculosis", "LungCancer"],
+    "id": "TbOrCa",
+    "fixp": [["1", "0"], ["0", "1"], ["0", "1"], ["0", "1"]]
+  }, {
+    "states": ["Normal", "Abnormal"],
+    "probabilities": ["0.95", "0.05", "0.02", "0.98"],
+    "parents": ["TbOrCa"],
+    "id": "XRay",
+    "fixp": [
+      ["0.95", "0.05"],
+      ["0.02", "0.98"]
+    ]
+  }, {
+    "states": ["Absent", "Present"],
+    "probabilities": ["0.99", "0.01", "0.95", "0.05"],
+    "parents": ["VisitToAsia"],
+    "id": "Tuberculosis",
+    "fixp": [
+      ["0.99", "0.01"],
+      ["0.95", "0.05"]
+    ]
+  }, {
+    "states": ["NonSmoker", "Smoker"],
+    "probabilities": ["0.5", "0.5"],
+    "parents": [],
+    "id": "Smoking",
+    "fixp": null
+  }, {
+    "states": ["Absent", "Present"],
+    "probabilities": ["0.99", "0.01", "0.9", "0.1"],
+    "parents": ["Smoking"],
+    "id": "LungCancer",
+    "fixp": [
+      ["0.99", "0.01"],
+      ["0.9", "0.1"]
+    ]
+  }, {
+    "states": ["NoVisit", "Visit"],
+    "probabilities": ["0.9", "0.1"],
+    "parents": [],
+    "id": "VisitToAsia",
+    "fixp": null
+  }, {
+    "states": ["Absent", "Present"],
+    "probabilities": ["0.9", "0.1", "0.2", "0.8", "0.3", "0.7", "0.1", "0.9"],
+    "parents": ["TbOrCa", "Bronchitis"],
+    "id": "Dyspnea",
+    "fixp": [
+      ["0.9", "0.1"],
+      ["0.2", "0.8"],
+      ["0.3", "0.7"],
+      ["0.1", "0.9"]
+    ]
+  }],
+  "links": [{
+    "source": 0,
+    "target": 7
+  }, {
+    "source": 1,
+    "target": 2
+  }, {
+    "source": 1,
+    "target": 7
+  }, {
+    "source": 3,
+    "target": 1
+  }, {
+    "source": 4,
+    "target": 5
+  }, {
+    "source": 4,
+    "target": 0
+  }, {
+    "source": 5,
+    "target": 1
+  }, {
+    "source": 6,
+    "target": 3
+  }],
+  "multigraph": false
+}

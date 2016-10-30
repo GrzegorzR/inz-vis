@@ -1,0 +1,66 @@
+{
+  "directed": true,
+  "graph": {},
+  "nodes": [{
+    "states": ["present", "absent"],
+    "probabilities": ["0.8", "0.2", "0.8", "0.2", "0.8", "0.2", "0.05", "0.95"],
+    "parents": ["IncrSerCal", "BrainTumor"],
+    "id": "Coma",
+    "fixp": [
+      ["0.8", "0.2"],
+      ["0.8", "0.2"],
+      ["0.8", "0.2"],
+      ["0.05", "0.95"]
+    ]
+  }, {
+    "states": ["present", "absent"],
+    "probabilities": ["0.8", "0.2", "0.6", "0.4"],
+    "parents": ["BrainTumor"],
+    "id": "SevHeadaches",
+    "fixp": [
+      ["0.8", "0.2"],
+      ["0.6", "0.4"]
+    ]
+  }, {
+    "states": ["present", "absent"],
+    "probabilities": ["0.2", "0.8"],
+    "parents": [],
+    "id": "MetastCancer",
+    "fixp": null
+  }, {
+    "states": ["present", "absent"],
+    "probabilities": ["0.2", "0.8", "0.05", "0.95"],
+    "parents": ["MetastCancer"],
+    "id": "BrainTumor",
+    "fixp": [
+      ["0.2", "0.8"],
+      ["0.05", "0.95"]
+    ]
+  }, {
+    "states": ["present", "absent"],
+    "probabilities": ["0.8", "0.2", "0.2", "0.8"],
+    "parents": ["MetastCancer"],
+    "id": "IncrSerCal",
+    "fixp": [
+      ["0.8", "0.2"],
+      ["0.2", "0.8"]
+    ]
+  }],
+  "links": [{
+    "source": 2,
+    "target": 3
+  }, {
+    "source": 2,
+    "target": 4
+  }, {
+    "source": 3,
+    "target": 0
+  }, {
+    "source": 3,
+    "target": 1
+  }, {
+    "source": 4,
+    "target": 0
+  }],
+  "multigraph": false
+}

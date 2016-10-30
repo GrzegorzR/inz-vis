@@ -7,18 +7,18 @@ function LayoutManeger () {
     			.gravity(0.05)
     			.distance(100)
     			.charge(-1000)
-    			.size([width, height]);;
+    			.size([width, height]);
 
     this.getForce = function(){
     	return this.force;
-    }
+    };
 
 	this.addForceLayout = function(json){
 	  this.force
       	  .nodes(json.nodes)
       	  .links(json.links)
       	  .start();
-	}
+	};
 
 	this.prepereTickBehaviour = function(links, nodes){
 		this.force.on("tick", function() {

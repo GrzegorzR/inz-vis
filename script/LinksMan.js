@@ -18,7 +18,6 @@ function createArrowImage (nodeRadius) {
 }
 
 function getArrow(link){
-  console.log(link.target);
   if(link.target.id === "CreditWorthiness")
     return "url(#end"+ bigNodeR.toString() +")";
   else

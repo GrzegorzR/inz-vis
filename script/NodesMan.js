@@ -2,7 +2,6 @@
 
 
 function preparePieData (node,i){
-                                  console.log(node);
     var arr = [];
     for(var i =0; i < node.states.length; i ++){
         arr.push({"group": node.states[i], "value": node.probabilities[i]});
@@ -32,8 +31,8 @@ function arcTween(a) {
 function reloadChart (id){
     var node =  d3.selectAll(".node").filter(function(d) { return d.id === id; });
     var path = node.selectAll("path");
-    path.data(preparePieData2(node.data()[0]));
-    path.transition().duration(200).attrTween("d", arcTween);
+    path.data(preparePieData(node.data()[0],0));
+    path.transition().duration(0).attrTween("d", arcTween);
 };
 
 function getNodeById(nodeId) {
@@ -103,7 +102,7 @@ function NodesManeger () {
         .attr("d", arc2)
         .attr("r", 25)
           .each(function(d) { this._current = d; });
-  }
+  };
   this.deleteChart = function (id){
 
       var nodes1 =  d3.selectAll(".node").filter(function(d) { return d.id === id; });
@@ -114,14 +113,13 @@ function NodesManeger () {
 
   };
   this.updateValues = function () {
-      var nodes1 =  this.nodes.filter(function(d) { return d.id === "Age"; });
     this.nodes.each(function (d) {
        // var selection = d3.select(this);
 
         var nodeName = this.textContent;
-        if(nodeName != "CreditWorthiness") {
+        //if(nodeName != "CreditWorthiness") {
             reloadChart(nodeName);
-        }
+       // }
     })
   }
 

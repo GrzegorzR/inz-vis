@@ -1,46 +1,72 @@
 
+function updateSlider(nodeId, stateNum, val){
+    var nodeObj = getNodeById(nodeId);
+    //console.log(nodeObj);
+    //console.log(nodeId, nodeObj.states[stateNum], nodeObj.probabilities[stateNum], val );
+    var slidersVals = [];
+    var sum = 0;
+    for(var i =0 ; i < nodeObj.states.length; i++){
+        var value = Number(document.getElementById("slider"+i).value);
+        console.log(value);
+        sum+= value;
+        slidersVals.push(value);
+    }
 
-function addSlider(id){
+    for(var i =0 ; i < nodeObj.states.length; i++){
+        var value = (((Math.round((slidersVals[i]/sum)*1000))/10)).toString();
+        var state = nodeObj.states[i];
+        var text = "State " + state +" probability: " + value +" %";
+        document.getElementById("s"+i).innerHTML = text;
+        nodeObj.probabilities[i] = value/100;
+    }
+    main.updateValues();
+}
 
-  $('<p>state ' + id+':</p>').appendTo('#sliders');
-  var iDiv = document.createElement('slider' + id);
-  var sliderName = 'slider' + id;
-  iDiv.id = sliderName;
-  iDiv.class = sliderName;
+function addSlider(nodeId, stateName, stateNum, val) {
 
-  
-  document.getElementById("node_info").appendChild(iDiv);
+    var value = (((Math.round((val)*1000))/10)).toString();
+    var text = "State " + stateName +" probability: " + value +" %";
+    $('<p id =s'+stateNum + '>' + text + '</p>').appendTo('#sliders');
+    var iDiv = document.createElement('slider' + stateNum);
+    var sliderName = 'slider' + sliderName;
+    iDiv.id = sliderName;
+    iDiv.class = sliderName;
 
+    document.getElementById("node_info").appendChild(iDiv);
 
-  var slider = d3.select(".sliders").append("p").append("input")
-  .datum({})
-  .attr("type", "range");
-  
-  //.on("input", slided);
+    var slider = d3.select(".sliders").append("p").append("input")
+        .datum({})
+        .attr("id", "slider"+stateNum)
+        .attr("type", "range")
+        .attr("min", 0)
+        .attr("max", 100)
+        .attr("value", val*100 )
+        .attr("oninput", "updateSlider(\'"+nodeId+"\',\'"+stateNum+ "\',this.value)");
+
+    //.on("input", slided);
 
 
 }
 
 
-function MenuManeger () {
-	
-
-	this.prepareNodeMenu = function(node){
-		document.getElementById('sliders').innerHTML = "";
+function MenuManeger() {
 
 
-
-		document.getElementById("node_name").innerHTML = node.id;
-		console.log(node);
-		console.log()
-
-  		$(".node_info").show();
-
-  		for (i = 0; i < node.states.length ; i++){
-  			addSlider(node.states[i]);
-  		}
+    this.prepareNodeMenu = function (node) {
+        document.getElementById('sliders').innerHTML = "";
 
 
-		return null;
-	}
+        document.getElementById("node_name").innerHTML = node.id;
+        console.log(node);
+        console.log();
+
+        $(".node_info").show();
+
+        for (i = 0; i < node.states.length; i++) {
+            addSlider(node.id ,node.states[i], i ,node.probabilities[i]);
+        }
+
+
+        return null;
+    }
 }
