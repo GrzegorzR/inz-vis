@@ -13,6 +13,7 @@ var c10 = d3.scale.category10();
 
 function click() {
   var selection = d3.select(this);
+
   var nodeName = this.textContent;
   main.selectNode(nodeName);
    // main.deleteChart(nodeName);
@@ -38,7 +39,7 @@ function updateValues(time) {
 }
 
 var bigNodeR = 25;
-var smallNodeR = 30;
+var smallNodeR = 25;
 
 var width = document.getElementById("vis-div").offsetWidth -30,
     height = 600;

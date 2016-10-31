@@ -27,6 +27,7 @@ function updateSlider(nodeId, stateNum, val) {
     else {
         document.getElementById("net-info").innerHTML = "Network unresolved";
         document.getElementById("net-panel").className = "panel panel-danger";
+        main.updateOneNode(nodeId);
     }
 }
 
@@ -34,7 +35,7 @@ function addSlider(nodeId, stateName, stateNum, val) {
 
     var value = (((Math.round((val) * 1000)) / 10)).toString();
     var text = "State " + stateName + " probability: " + value + " %";
-    $('<p id =s' + stateNum + '>' + text + '</p>').appendTo('#sliders');
+    $('<br><br><p id =s' + stateNum + '>' + text + '</p>').appendTo('#sliders');
     var iDiv = document.createElement('slider' + stateNum);
     var sliderName = 'slider' + sliderName;
     iDiv.id = sliderName;
@@ -70,15 +71,19 @@ function MenuManeger() {
         for (i = 0; i < node.states.length; i++) {
             addSlider(node.id, node.states[i], i, node.probabilities[i]);
         }
-        this.addLiveUpdateCheckbox();
-        this.addSolveNetworkButton();
+
 
         return null;
     };
 
+    this.prepareNetMenu = function(){
+        this.addLiveUpdateCheckbox();
+        this.addSolveNetworkButton();
+    };
+
     this.addLiveUpdateCheckbox = function () {
         var checkbox =
-            d3.select(".sliders")
+            d3.select(".net-menu")
                 .append("p")
                 .text("\n Live update: ")
                 .append("input")
@@ -88,9 +93,9 @@ function MenuManeger() {
 
     this.addSolveNetworkButton = function () {
         var button =
-            d3.select(".sliders")
+            d3.select(".net-menu")
                 .append("p")
-                .text(" ")
+                .text("    ")
                 .append("input")
                 .attr("type", "submit")
                 .attr("id", "resolvebutton")

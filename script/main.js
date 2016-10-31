@@ -27,6 +27,7 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
 
 
             this.layoutManeger.prepereTickBehaviour(links, nodes);
+            this.menuManeger.prepareNetMenu();
         });
 
     };
@@ -34,10 +35,10 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
     this.selectNode = function (nodeId) {
 
         var node = this.nodesManeger.getNodeById(nodeId);
-
+        console.log(node);
         //reloadChart(nodeId);
         //this.nodesManeger.addPieChartsToNodes();
-        var menuObj = this.menuMeneger.prepareNodeMenu(node);
+        this.menuMeneger.prepareNodeMenu(node);
 
         //subscribe sliders and buttons here
 
@@ -49,6 +50,9 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
         document.getElementById("net-info").innerHTML = "Network resolved";
         document.getElementById("net-panel").className = "panel panel-success";
         this.nodesManeger.updateValues(time);
+    };
+    this.updateOneNode = function (nodeId) {
+        reloadChart(nodeId,0);
     }
 
 };
