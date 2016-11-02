@@ -1,9 +1,20 @@
 
+
+
+var chartWidth;
+var chartHeight = 200;
+var svg2;
+var selectedNode = null;
+
 $(document).ready(function(){
 
 
-   
- 
+    $("#sliders-panel").hide();
+    $("#node-panel").hide();
+
+    chartWidth = document.getElementById("chart").offsetWidth;
+    console.log(chartWidth)
+
 });
 
 var main = null;
@@ -12,26 +23,18 @@ var c10 = d3.scale.category10();
 
 
 function click() {
-  var selection = d3.select(this);
-
   var nodeName = this.textContent;
   main.selectNode(nodeName);
-   // main.deleteChart(nodeName);
-  /*
-  document.getElementById('sliders').innerHTML = "";
-  getNodeById("aa");
+}
 
+function mouseEnter(){
+    var nodeName = this.textContent;
+    main.mouseOn(nodeName);
+}
 
-  document.getElementById("node_name").innerHTML = nodeName;
-
-
-  $(".node_info").show();
-
-  addSlider("1");
-  addSlider("2");
-  addSlider("3");
-
-  console.log(this.textContent);*/
+function mouseLeave(){
+    var nodeName = this.textContent;
+    main.mouseLeave(nodeName);
 }
 
 function updateValues(time) {
@@ -44,10 +47,17 @@ var smallNodeR = 25;
 var width = document.getElementById("vis-div").offsetWidth -30,
     height = 600;
 
+
+
+
+
+
 console.log(width);
 var svg = d3.select(".visual").append("svg")
     .style("width", width)
     .attr("height", height);
+
+
 
   var arc = d3.svg.arc()
         .outerRadius(smallNodeR)

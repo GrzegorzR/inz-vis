@@ -62,6 +62,8 @@ function NodesManeger() {
             .attr("class", "node")
             //to dodać poznie
             .on("click", click)
+            .on("mouseenter", mouseEnter)
+            .on("mouseleave", mouseLeave)
             .call(force.drag);
         this.nodes = node;
 

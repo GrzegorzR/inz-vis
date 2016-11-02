@@ -33,7 +33,7 @@ function calculateNodeProbabilities(node) {
         }
         parentsStates.push(parentState);
     }
-    console.log(node.id, parentsStates);
+  //  console.log(node.id, parentsStates);
 
     var statesCom = [""];
 
@@ -55,11 +55,11 @@ function calculateNodeProbabilities(node) {
         var p = 1;
         for (var j = 0; j < parents.length; j++) {
             var parentObj = getNodeById(parents[j]);
-            console.log(parentObj.id, parentObj.probabilities[statesCom[i][j]], parentObj.probabilities);
+           // console.log(parentObj.id, parentObj.probabilities[statesCom[i][j]], parentObj.probabilities);
             p *= parentObj.probabilities[statesCom[i][j]];
         }
         for (var s = 0; s < states.length; s++) {
-            console.log(node.id, conProb[i][s] * p);
+           // console.log(node.id, conProb[i][s] * p);
             probabilities[s] += conProb[i][s] * p;
         }
     }
@@ -98,5 +98,5 @@ function calculateNetworkProb(nodes) {
 function resolveWithoutEvidences(nodes) {
     markNodesAsUnresolved();
     calculateNetworkProb();
-    console.log(nodes);
+   // console.log(nodes);
 }

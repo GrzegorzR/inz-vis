@@ -15,7 +15,7 @@
   fill: #fcf;
 }
 #node_info {
-      
+      height: 2000px;
       position:relative;
 }
 
@@ -28,61 +28,96 @@
   margin-left: 5px;
 }
 
+#sliders{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.x.axis path {
+  display: none;
+}
+
+
 </style>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="style/slider.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://d3js.org/d3.v3.min.js"></script>
+<!--
+  <script src="http://requirejs.org/docs/release/2.3.2/minified/require.js"></script>
+-->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
 </head>
 <body>
 
-<!--
-<div class="jumbotron" style="background-color:#4c4c4c;">
-  <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>
-</div>
--->
+
 
 
   <div class="col-md-12" style="background-color:#4c4c4c;">
 
-    <div class="col-md-9" id ="headmenu" style="background-color:#4c4c4c;">
-      <h1>Bayes Vis</h1>
+    <div class="col-md-8" id ="headmenu" style="background-color:#4c4c4c;">
+      <h1>Bayesian Network</h1>
       <br>
 
     </div>
-    <div class="col-md-3" style="background-color:#4c4c4c;">
+    <div class="col-md-4" style="background-color:#4c4c4c;">
 
     </div>
 
-    <div class="col-md-9" id ="vis-div" style="background-color:#4c4c4c;">
+    <div class="col-md-8" id ="vis-div" style="background-color:#4c4c4c;">
       <div class = "visual", style="background-color:#717782">
         <script  src = "script/utilis.js"></script>
         <script  src = "script/NodesMan.js"></script>
         <script type='text/javascript', src = "script/LinksMan.js"></script>
         <script type='text/javascript', src = "script/LayoutMan.js"></script>
-        <script type='text/javascript', src = "script/MenuMan.js"></script>
+
+        <script type='text/javascript', src = "script/menu/NetworkMenu.js"></script>
+        <script type='text/javascript', src = "script/menu/SlidersMenu.js"></script>
+        <script type='text/javascript', src = "script/menu/BarChartMenu.js"></script>
+        <script type='text/javascript', src = "script/menu/MenuMan.js"></script>
+
         <script type='text/javascript', src = "script/NetworkResolver.js"></script>
         <script  type='text/javascript', src = "script/main.js"></script>
       </div>
     </div>
 
 
-    <div class="col-md-3" id = "vis-menu" style="background-color:lavender;">
-      <br>
+    <div class="col-md-4" id = "vis-menu" style="background-color:#4c4c4c;">
       <div id = "net-panel" class="panel panel-success">
         <div class="panel-heading"><p id="net-info">Network resolved</p></div>
         <div class = "net-menu"></div>
 
       </div>
+
       <div id="node_info">
-        Selected node info:<br>
-        <div id="node_name"></div>
-        <br>
-        <br>
-        <div id="sliders", class="sliders"><br></div>
+
+        <div id = "node-panel" class="panel panel-default">
+          <div class="panel-heading" id = "node_name"></div>
+          <div id="legend" class="legend">aa</div>
+          <div id="chart" class="chart"></div>
+
+        </div>
+
+
+        <div id = "sliders-panel" class="panel panel-default">
+          <div class="panel-heading"><p >Change </p></div>
+          <div id="sliders" class="sliders"><br></div>
+        </div>
+
 	  </div>
     </div>
 

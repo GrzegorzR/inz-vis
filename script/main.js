@@ -35,23 +35,49 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
     this.selectNode = function (nodeId) {
 
         var node = this.nodesManeger.getNodeById(nodeId);
-        console.log(node);
-        //reloadChart(nodeId);
-        //this.nodesManeger.addPieChartsToNodes();
-        this.menuMeneger.prepareNodeMenu(node);
+        this.menuMeneger.prepareBarChartMenu(node);
+        selectedNode = node;
 
-        //subscribe sliders and buttons here
+        //if node is leaf
+        if(node.parents.length === 0) {
+            this.menuMeneger.prepareSlidersMenu(node);
+        }
+        else{
+            $("#sliders-panel").hide();
+        }
+
+
+    };
+    this.mouseOn = function (nodeId) {
+        var node = this.nodesManeger.getNodeById(nodeId);
+        this.menuMeneger.prepareBarChartMenu(node);
+        $("#sliders-panel").hide();
+
+    };
+
+    this.mouseLeave = function (nodeId) {
+        if(selectedNode != null){
+            this.selectNode(selectedNode.id);
+        }
+        else {
+            $("#node-panel").hide();
+        }
 
     };
 
 
     this.updateValues = function (time) {
         resolveWithoutEvidences(null);
+        if(selectedNode != null) {
+            this.menuMeneger.prepareBarChartMenu(selectedNode);
+        }
         document.getElementById("net-info").innerHTML = "Network resolved";
         document.getElementById("net-panel").className = "panel panel-success";
         this.nodesManeger.updateValues(time);
     };
     this.updateOneNode = function (nodeId) {
+        var node = getNodeById(nodeId);
+        this.menuMeneger.prepareBarChartMenu(node);
         reloadChart(nodeId,0);
     }
 
