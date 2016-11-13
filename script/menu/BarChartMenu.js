@@ -17,7 +17,6 @@ function addLegend(node, colors) {
     for (var i = 0; i < node.states.length; i++) {
         data.push({"state": node.states[i], "color": colors[i]});
     }
-    console.log(data);
 
     document.getElementById('legend').innerHTML = "<br>";
 

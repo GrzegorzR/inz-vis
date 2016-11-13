@@ -5,12 +5,48 @@ function printChildren(nodes, links) {
         console.log(d.children);
     })
 }
+
+function getParentsStates(node) {
+
+    var parents = node.parents;
+    var parentsStates = [];
+    for (var i = 0; i < parents.length; i++) {
+        var parentState = [];
+        parent = getNodeById(parents[i]);
+        for (var j = 0; j < parent.states.length; j++) {
+            parentState.push(j);
+        }
+        parentsStates.push(parentState);
+    }
+    return parentsStates;
+}
+
+function getStatesCom(node){
+    var statesCom = [""];
+    var parentsStates = getParentsStates(node);
+
+    for (var i = 0; i < parentsStates.length; i++) {
+        var newStatesCom = [];
+        for (var j = 0; j < parentsStates[i].length; j++) {
+
+            for (var k = 0; k < statesCom.length; k++) {
+                // console.log(statesCom[k] +parentsStates[i][j].toString());
+                newStatesCom.push(statesCom[k] + parentsStates[i][j].toString())
+            }
+        }
+        statesCom = newStatesCom;
+    }
+
+    statesCom.sort();
+    return statesCom;
+}
+
+
 function calculateNodeProbabilities(node) {
 
     var parents = node.parents;
     var states = node.states;
     var conProb = node.fixp;
-    var parentsStates = [];
     var probabilities = [];
     for (var i = 0; i < states.length; i++) {
         probabilities.push(0);
@@ -25,30 +61,7 @@ function calculateNodeProbabilities(node) {
         }
     }
 
-    for (var i = 0; i < parents.length; i++) {
-        var parentState = [];
-        parent = getNodeById(parents[i]);
-        for (var j = 0; j < parent.states.length; j++) {
-            parentState.push(j);
-        }
-        parentsStates.push(parentState);
-    }
-  //  console.log(node.id, parentsStates);
-
-    var statesCom = [""];
-
-    for (var i = 0; i < parentsStates.length; i++) {
-        var newStatesCom = [];
-        for (var j = 0; j < parentsStates[i].length; j++) {
-
-            for (var k = 0; k < statesCom.length; k++) {
-                // console.log(statesCom[k] +parentsStates[i][j].toString());
-                newStatesCom.push(statesCom[k] + parentsStates[i][j].toString())
-            }
-        }
-        statesCom = newStatesCom;
-    }
-    statesCom.sort();
+    var statesCom = getStatesCom(node);
 
 
     for (var i = 0; i < conProb.length; i++) {

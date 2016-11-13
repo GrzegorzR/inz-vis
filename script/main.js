@@ -35,6 +35,7 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
     this.selectNode = function (nodeId) {
 
         var node = this.nodesManeger.getNodeById(nodeId);
+        printBFS(node);
         this.menuMeneger.prepareBarChartMenu(node);
         selectedNode = node;
 
