@@ -1,0 +1,69 @@
+.buttonsh {
+    border: 1px solid #0a3c59;
+    background: #474747;
+    background: -webkit-gradient(linear, left top, left bottom, from(#858585), to(#474747));
+    background: -webkit-linear-gradient(top, #858585, #474747);
+    background: -moz-linear-gradient(top, #858585, #474747);
+    background: -ms-linear-gradient(top, #858585, #474747);
+    background: -o-linear-gradient(top, #858585, #474747);
+    background-image: -ms-linear-gradient(top, #858585 0%, #474747 100%);
+    padding: 2px 4px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    text-shadow: #4e575c 0 1px 0;
+    color: #dedede;
+    font-size: 10px;
+    font-family: helvetica, serif;
+    text-decoration: none;
+    float: right;
+}
+.buttonsh:hover {
+    border: 1px solid #0a3c59;
+    background: #474747;
+    background: -webkit-gradient(linear, left top, left bottom, from(#858585), to(#474747));
+    background: -webkit-linear-gradient(top, #858585, #474747);
+    background: -moz-linear-gradient(top, #858585, #474747);
+    background: -ms-linear-gradient(top, #858585, #474747);
+    background: -o-linear-gradient(top, #858585, #474747);
+    background-image: -ms-linear-gradient(top, #858585 0%, #474747 100%);
+    padding: 2px 4px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    text-shadow: #4e575c 0 1px 0;
+    color: #dedede;
+    font-size: 10px;
+    font-family: helvetica, serif;
+    text-decoration: none;
+    float: right;
+}
+.buttonsh:active {
+    border: 1px solid #0a3c59;
+    background: #474747;
+    background: -webkit-gradient(linear, left top, left bottom, from(#858585), to(#474747));
+    background: -webkit-linear-gradient(top, #858585, #474747);
+    background: -moz-linear-gradient(top, #858585, #474747);
+    background: -ms-linear-gradient(top, #858585, #474747);
+    background: -o-linear-gradient(top, #858585, #474747);
+    background-image: -ms-linear-gradient(top, #858585 0%, #474747 100%);
+    padding: 2px 4px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    text-shadow: #4e575c 0 1px 0;
+    color: #dedede;
+    font-size: 10px;
+    font-family: helvetica, serif;
+    text-decoration: none;
+    float: right;
+}

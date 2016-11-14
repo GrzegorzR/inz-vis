@@ -54,9 +54,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="style/slider.css">
-<!--
-  <script src="http://requirejs.org/docs/release/2.3.2/minified/require.js"></script>
--->
+  <link rel="stylesheet" type="text/css" href="style/button.css">
+
+  <!--
+    <script src="http://requirejs.org/docs/release/2.3.2/minified/require.js"></script>
+  -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -84,6 +86,8 @@
         <script  src = "script/NodesMan.js"></script>
         <script type='text/javascript', src = "script/LinksMan.js"></script>
         <script type='text/javascript', src = "script/LayoutMan.js"></script>
+        <script  type='text/javascript', src = "script/menu/buttons.js"></script>
+
 
         <script type='text/javascript', src = "script/menu/NetworkMenu.js"></script>
         <script type='text/javascript', src = "script/menu/SlidersMenu.js"></script>
@@ -114,7 +118,7 @@
 
 
         <div id = "sliders-panel" class="panel panel-default">
-          <div class="panel-heading"><p >Change </p></div>
+          <div class="panel-heading">Change  <a href='#' id = 'showsl' class='buttonsh'>show</a> <a href='#' id = 'hidesl' class='buttonsh'>hide</a></div>
           <div id="sliders" class="sliders"><br></div>
         </div>
 
