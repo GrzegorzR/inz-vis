@@ -68,6 +68,7 @@
     ]
   }],
   "links": [{
+    "inba" : 8,
     "source": 0,
     "target": 7
   }, {

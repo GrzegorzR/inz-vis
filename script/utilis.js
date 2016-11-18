@@ -22,6 +22,7 @@ var main = null;
 var c10 = d3.scale.category10();
 
 
+
 function click() {
   var nodeName = this.textContent;
   main.selectNode(nodeName);
@@ -66,7 +67,7 @@ var svg = d3.select(".visual").append("svg")
         .outerRadius(bigNodeR)
         .innerRadius(0);
 
-
+var defs = svg.append("defs");
 
 var force = d3.layout.force()
     .gravity(0.05)
@@ -108,3 +109,46 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+
+
+
+var Vector2 = function(x,y) {
+    this.magnitude = Math.sqrt(x*x+y*y);
+    this.X = x;
+    this.Y = y;
+};
+
+Vector2.prototype.perpendicularClockwise = function(){
+    return new Vector2(-this.Y, this.X);
+};
+
+Vector2.prototype.perpendicularCounterClockwise = function(){
+    return new Vector2(this.Y, -this.X);
+};
+
+Vector2.prototype.getUnitVector = function(){
+    return new Vector2(this.X/this.magnitude, this.Y/this.magnitude);
+};
+
+Vector2.prototype.scale = function(ratio){
+    return new Vector2(ratio*this.X, ratio*this.Y);
+};
+
+
+d3.selection.prototype.moveToFront = function() {
+    return this.each(function(){
+        this.parentNode.appendChild(this);
+    });
+};
+
+function getChartColors(node){
+    var colors = [];
+    var nodeEl = d3.selectAll(".node").filter(function (d) {
+        return d.id === node.id;
+    });
+    var path = nodeEl.selectAll("path");
+    for(var i =0; i < node.states.length; i++){
+        colors.push( d3.select(path[0][i]).attr("fill"));
+    }
+    return colors;
+}

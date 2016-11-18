@@ -12,8 +12,7 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
             this.layoutManeger.addForceLayout(json)
             var force = layoutManeger.getForce();
 
-            this.linksManeger.addLinks(json);
-            this.linksManeger.addArrowsToLinks();
+
 
 
             this.nodesManeger.addNodes(json, force);
@@ -22,6 +21,10 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
             this.nodesManeger.addPieChartsToNodes();
             this.nodesManeger.addTextToNodes();
 
+
+            this.linksManeger.addLinks(json);
+            this.linksManeger.addArrowsToLinks();
+            d3.selectAll(".node").moveToFront();
 
             var links = linksManeger.getLinks();
 
@@ -46,8 +49,6 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
         else{
             $("#sliders-panel").hide();
         }
-
-
     };
     this.mouseOn = function (nodeId) {
         var node = this.nodesManeger.getNodeById(nodeId);
@@ -55,7 +56,6 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
         $("#sliders-panel").hide();
 
     };
-
     this.mouseLeave = function (nodeId) {
         if(selectedNode != null){
             this.selectNode(selectedNode.id);
@@ -65,8 +65,6 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
         }
 
     };
-
-
     this.updateValues = function (time) {
         resolveWithoutEvidences(null);
         if(selectedNode != null) {
@@ -81,7 +79,15 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
         this.menuMeneger.prepareBarChartMenu(node);
         reloadChart(nodeId,0);
     }
+    this.changeLinksToBFS = function(){
+        var links = this.linksManeger.removeLinks();
+        var nodes = this.nodesManeger.getNodes();
 
+        this.layoutManeger.prepereTickBehaviour(links, nodes);
+        this.layoutManeger.force.charge(1);
+        d3.selectAll(".node").moveToFront();
+
+    }
 };
 
 

@@ -47,6 +47,7 @@ function MenuManeger() {
     this.prepareNetMenu = function(){
         addLiveUpdateCheckbox();
         addSolveNetworkButton();
+        addRemoveLinksButton();
     };
 
 

@@ -1,16 +1,6 @@
 
 
-function getChartColors(node){
-    var colors = [];
-    var nodeEl = d3.selectAll(".node").filter(function (d) {
-        return d.id === node.id;
-    });
-    var path = nodeEl.selectAll("path");
-    for(var i =0; i < node.states.length; i++){
-       colors.push( d3.select(path[0][i]).attr("fill"));
-    }
-    return colors;
-}
+
 
 function addLegend(node, colors) {
     var data =[];

@@ -23,3 +23,15 @@ function addSolveNetworkButton() {
             .attr("value", "Solve network")
             .attr("onclick", "updateValues(1000)");
 };
+
+function addRemoveLinksButton(){
+    var button =
+        d3.select(".net-menu")
+            .append("p")
+            .text("    ")
+            .append("input")
+            .attr("type", "submit")
+            .attr("id", "resolvebutton")
+            .attr("value", "Remove Links")
+            .attr("onclick", "main.changeLinksToBFS()");
+}
