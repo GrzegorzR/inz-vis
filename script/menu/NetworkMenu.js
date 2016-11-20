@@ -24,7 +24,7 @@ function addSolveNetworkButton() {
             .attr("onclick", "updateValues(1000)");
 };
 
-function addRemoveLinksButton(){
+function addBFSLinksButton(){
     var button =
         d3.select(".net-menu")
             .append("p")
@@ -32,6 +32,18 @@ function addRemoveLinksButton(){
             .append("input")
             .attr("type", "submit")
             .attr("id", "resolvebutton")
-            .attr("value", "Remove Links")
+            .attr("value", "Biggest for state links")
             .attr("onclick", "main.changeLinksToBFS()");
 }
+
+function addStandardLinksButton(){
+    var button =
+        d3.select(".net-menu")
+            .append("p")
+            .text("    ")
+            .append("input")
+            .attr("type", "submit")
+            .attr("id", "resolvebutton")
+            .attr("value", "Standard links")
+            .attr("onclick", "main.changeLinksToStandard()");
+};

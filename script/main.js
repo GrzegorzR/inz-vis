@@ -3,13 +3,16 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
     this.linksManeger = linksManeger;
     this.layoutManeger = layoutManeger;
     this.menuMeneger = menuMeneger;
+    this.json = null;
 
     this.createVisualisation = function (jsonLocation) {
         d3.json(jsonLocation, function (error, json) {
+            main.json = json;
+            console.log(this);
             if (error) throw error;
 
-
-            this.layoutManeger.addForceLayout(json)
+            this.layoutManeger.setUpdater(new UpdaterStandard());
+            this.layoutManeger.addForceLayout(json);
             var force = layoutManeger.getForce();
 
 
@@ -23,11 +26,9 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
 
 
             this.linksManeger.addLinks(json);
-            this.linksManeger.addArrowsToLinks();
             d3.selectAll(".node").moveToFront();
 
             var links = linksManeger.getLinks();
-
 
             this.layoutManeger.prepereTickBehaviour(links, nodes);
             this.menuManeger.prepareNetMenu();
@@ -74,26 +75,50 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
         document.getElementById("net-panel").className = "panel panel-success";
         this.nodesManeger.updateValues(time);
     };
+
     this.updateOneNode = function (nodeId) {
         var node = getNodeById(nodeId);
         this.menuMeneger.prepareBarChartMenu(node);
         reloadChart(nodeId,0);
-    }
+    };
+
     this.changeLinksToBFS = function(){
-        var links = this.linksManeger.removeLinks();
+        this.changeLinksMan(new BFSLinksMan());
+        this.prepareLayout(new UpdaterBFS());
+    };
+    this.changeLinksToStandard = function () {
+        this.changeLinksMan(new StandardLinksMan());
+        this.prepareLayout(new UpdaterStandard());
+    };
+
+    this.changeLinksMan = function(newLinkMan){
+        this.clearDefs();
+        this.linksManeger.removeLinks();
+        this.linksManeger = newLinkMan;
+        this.linksManeger.addLinks(this.json);
+    };
+
+    this.prepareLayout = function(updater){
         var nodes = this.nodesManeger.getNodes();
-
+        var links = this.linksManeger.getLinks();
+        this.layoutManeger.setUpdater(updater);
         this.layoutManeger.prepereTickBehaviour(links, nodes);
-        this.layoutManeger.force.charge(1);
+        updater.update(links, nodes);
         d3.selectAll(".node").moveToFront();
+    };
 
-    }
+    this.clearDefs = function () {
+        d3.selectAll(".arrow").remove();
+        d3.selectAll(".gradient").remove();
+    };
+
 };
 
-
+var updaterStandard = new UpdaterStandard();
 var nodesManeger = new NodesManeger();
-var linksManeger = new LinksManeger();
+var linksManeger = new StandardLinksMan();
 var layoutManeger = new LayoutManeger();
+layoutManeger.setUpdater(updaterStandard);
 var menuManeger = new MenuManeger();
 
 var main = new MainClass(nodesManeger, linksManeger,
