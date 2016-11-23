@@ -49,6 +49,7 @@ function MenuManeger() {
         addSolveNetworkButton();
         addStandardLinksButton();
         addBFSLinksButton();
+        addThreeBiggestButton();
     };
 
 

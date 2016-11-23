@@ -8,6 +8,7 @@ function UpdaterBFS() {
         this.updateNodes(nodes);
     };
     this.updateLinks = function (links) {
+        clearDefs();
         links.attr("x1", function(d) { return d.source.x; })
             .attr("y1", function(d) { return d.source.y; })
             .attr("x2", function(d) { return d.target.x; })
@@ -15,8 +16,8 @@ function UpdaterBFS() {
             .attr("d", function(d) {
                 var dx = d.target.x - d.source.x,
                     dy = d.target.y - d.source.y,
-                    drx =- Math.sqrt(dx * dx + dy * dy)/1.5// + getRandomInt(10,500);
-                dry = Math.sqrt(dx * dx + dy * dy)/1.5// + getRandomInt(10,500);
+                    drx = d.r*(Math.sqrt(dx * dx + dy * dy));
+                dry = d.r*(Math.sqrt(dx * dx + dy * dy)) //+ getRandomInt(-50,50);
                 //	drx =70;
                 //	dry =100;
                 var diffX = d.target.x - d.source.x;
@@ -30,13 +31,15 @@ function UpdaterBFS() {
 
                 var endx = d.target.x //-offsetX;
                 var endy = d.target.y //-offsetY;
+                var flag = getRandomInt(0,1)
 
-                return "M" +
-                    d.source.x + "," +
-                    d.source.y + "A" +
-                    drx +  "," + dry + " 0 0,1 " +
-                    + endx +"," +
-                    endy;
+                    return "M" +
+                        d.source.x + "," +
+                        d.source.y + "A" +
+                        drx + "," + dry + " 0 0,"+ d.d +" "+endx + "," +
+                        endy;
+
+
             })
             .style("stroke",function(d){
 
@@ -46,9 +49,9 @@ function UpdaterBFS() {
 
                 var perpVector = linkVector.perpendicularClockwise().scale(radius);
                 var gradientVector = linkVector.scale(0.5);
-                var color1 = d3.select(this).attr("color1");
-                var color2 = d3.select(this).attr("color2");
-                var id = "S"+d.source.index +"T" + d.target.index;
+                var color2 = d3.select(this).attr("color1");
+                var color1 = d3.select(this).attr("color2");
+                var id = "S"+color1+"T" + color2;
                 var gradient1 = defs.append("linearGradient").attr("id",  id)
                     .attr("class", "gradient")
                     .attr("x1", 0.5-gradientVector.X)

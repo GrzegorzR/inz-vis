@@ -91,8 +91,13 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
         this.prepareLayout(new UpdaterStandard());
     };
 
+    this.changeLinksToTB = function () {
+        this.changeLinksMan(new TBLinksMan());
+        this.prepareLayout(new UpdaterBFS());
+    };
+
     this.changeLinksMan = function(newLinkMan){
-        this.clearDefs();
+        clearDefs();
         this.linksManeger.removeLinks();
         this.linksManeger = newLinkMan;
         this.linksManeger.addLinks(this.json);
@@ -107,10 +112,6 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
         d3.selectAll(".node").moveToFront();
     };
 
-    this.clearDefs = function () {
-        d3.selectAll(".arrow").remove();
-        d3.selectAll(".gradient").remove();
-    };
 
 };
 

@@ -47,3 +47,17 @@ function addStandardLinksButton(){
             .attr("value", "Standard links")
             .attr("onclick", "main.changeLinksToStandard()");
 };
+
+
+
+function addThreeBiggestButton() {
+    var button =
+        d3.select(".net-menu")
+            .append("p")
+            .text("    ")
+            .append("input")
+            .attr("type", "submit")
+            .attr("id", "resolvebutton")
+            .attr("value", "Three biggest probabilities for node")
+            .attr("onclick", "main.changeLinksToTB()");
+}
