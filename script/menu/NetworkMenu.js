@@ -36,6 +36,19 @@ function addBFSLinksButton(){
             .attr("onclick", "main.changeLinksToBFS()");
 }
 
+
+function addLFSLinksButton(){
+    var button =
+        d3.select(".net-menu")
+            .append("p")
+            .text("    ")
+            .append("input")
+            .attr("type", "submit")
+            .attr("id", "resolvebutton")
+            .attr("value", "Lowest for state links")
+            .attr("onclick", "main.changeLinksToLFS()");
+}
+
 function addStandardLinksButton(){
     var button =
         d3.select(".net-menu")
@@ -61,3 +74,5 @@ function addThreeBiggestButton() {
             .attr("value", "Three biggest probabilities for node")
             .attr("onclick", "main.changeLinksToTB()");
 }
+
+

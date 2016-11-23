@@ -154,6 +154,6 @@ function getChartColors(node){
 }
 
 function clearDefs(){
-    //d3.selectAll(".arrow").remove();
+    d3.selectAll(".arrow").remove();
     d3.selectAll(".gradient").remove();
 }

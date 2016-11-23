@@ -86,6 +86,12 @@ function MainClass(nodesManeger, linksManeger, layoutManeger, menuMeneger) {
         this.changeLinksMan(new BFSLinksMan());
         this.prepareLayout(new UpdaterBFS());
     };
+
+    this.changeLinksToLFS = function(){
+        this.changeLinksMan(new LFSLinksMan());
+        this.prepareLayout(new UpdaterBFS());
+    };
+
     this.changeLinksToStandard = function () {
         this.changeLinksMan(new StandardLinksMan());
         this.prepareLayout(new UpdaterStandard());
