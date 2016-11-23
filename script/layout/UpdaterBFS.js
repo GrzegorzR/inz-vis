@@ -26,16 +26,17 @@ function UpdaterBFS() {
                 // Length of path from center of source node to center of target node
                 var pathLength = Math.sqrt((diffX * diffX) + (diffY * diffY));
                 // x and y distances from center to outside edge of target node
-                var offsetX = (diffX * 35) / pathLength;
-                var offsetY = (diffY * 35) / pathLength;
+                var offsetX = (diffX * 26) / pathLength;
+                var offsetY = (diffY * 26)/ pathLength;
 
-                var endx = d.target.x //-offsetX;
-                var endy = d.target.y //-offsetY;
-                var flag = getRandomInt(0,1)
+                var endx = d.target.x -offsetX;
+                var endy = d.target.y -offsetY;
+                var startx= d.source.x// - 20;
+                var starty = d.source.y//- 20;
 
                     return "M" +
-                        d.source.x + "," +
-                        d.source.y + "A" +
+                        startx + "," +
+                        starty + "A" +
                         drx + "," + dry + " 0 0,"+ d.d +" "+endx + "," +
                         endy;
 

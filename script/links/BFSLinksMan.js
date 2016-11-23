@@ -45,8 +45,15 @@ function getBFSList(){
     return result;
 }
 
+
+
+
+
+
 function BFSLinksMan() {
     LinksManeger.call(this);
+
+
 
     this.addLinks = function(json){
         this.json = json;
@@ -72,4 +79,6 @@ function BFSLinksMan() {
             });
 
     }
+
+
 }

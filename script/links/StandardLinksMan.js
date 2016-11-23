@@ -16,7 +16,7 @@ function createArrowImage(nodeRadius) {
         .attr("markerHeight", 4)
         .attr("orient", "auto")
         .append("svg:path")
-        .attr("d", "M1,-6L11,1L1,6");
+        .attr("d", "M0,-5L10,0L0,5");
 }
 
 function getArrow(link) {
